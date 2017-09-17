@@ -1,19 +1,22 @@
 import secret_number
 
 def play():
-   i = 500
-   j = i
-   while secret_number.guess(i) != "correct":
-      j = j / 2
-      print i 
-      print j
-      if j > 1 and secret_number.guess(i) == "too-low":
-         i = i + j
-      elif j > 1 and secret_number.guess(i) == "too-high":
-         i = i - j
-      elif j <= 1 and secret_number.guess(i) == "too-low":
-         i += 1
-      elif j <= 1 and secret_number.guess(i) == "too-high":
-         i -= 1
+   high = 1000
+   low = 1
+   mid = (high + low) / 2
+   guess = secret_number.guess(mid)
+   while guess != 'correct':
+      if guess == 'too-low':
+         low = mid + 1
+         mid = (high + low) / 2
+      elif guess == 'too-high':
+         high = mid
+         mid = (high + low) / 2
+      guess = secret_number.guess(mid)
 
-print play()
+
+def main():
+   pass
+
+if __name__ == '__main__':
+   main()
